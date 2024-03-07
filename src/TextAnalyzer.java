@@ -28,7 +28,7 @@ public class TextAnalyzer {
                     Thread.currentThread().interrupt();
                 }
             }
-            // Помещаем стоп-сигналы после генерации всех текстов
+
             try {
                 queueA.put("STOP");
                 queueB.put("STOP");
@@ -71,7 +71,7 @@ public class TextAnalyzer {
             try {
                 while (true) {
                     String text = queue.take();
-                    if (text.equals("STOP")) break; // Завершение потока по специальному сигналу
+                    if (text.equals("STOP")) break;
                     int count = (int) text.chars().filter(c -> c == ch).count();
                     maxCount.updateAndGet(x -> Math.max(x, count));
                 }
